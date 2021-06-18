@@ -90,6 +90,17 @@ function App(props) {
     getTodos();
   };
 
+  // Function to delete todo on form submission
+  const deleteTodo = async (todo) => {
+    const response = await fetch(url + todo.id + "/", {
+      method: "delete",
+    });
+
+    // Get updated list of todos
+    getTodos();
+    props.history.push("/");
+  };
+
   ///////////////////////////////
   // useEffects
   ///////////////////////////////
@@ -138,6 +149,17 @@ function App(props) {
               initialTodo={targetTodo}
               handleSubmit={updateTodo}
               buttonLabel="update todo"
+            />
+          )}
+        />
+        <Route
+          path="/post/:id"
+          render={(routerProps) => (
+            <SinglePost
+              {...routerProps}
+              posts={posts}
+              edit={getTargetTodo}
+              deleteTodo={deleteTodo}
             />
           )}
         />
