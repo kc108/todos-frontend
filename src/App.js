@@ -78,7 +78,7 @@ function App(props) {
 
   // FUNCTION TO EDIT TODO ON FORM SUBMISSION
   const updateTodo = async (todo) => {
-    const response = await fetch(url + todo.id + "/", {
+    const response = await fetch(url + "/" + todo.id, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +92,7 @@ function App(props) {
 
   // Function to delete todo on form submission
   const deleteTodo = async (todo) => {
-    const response = await fetch(url + todo.id + "/", {
+    const response = await fetch(url + "/" + todo.id , {
       method: "delete",
     });
 
@@ -127,7 +127,7 @@ function App(props) {
         <Route
           path="/post/:id"
           render={(routerProps) => (
-            <SinglePost {...routerProps} posts={posts} edit={getTargetTodo} />
+            <SinglePost {...routerProps} posts={posts} edit={getTargetTodo} deleteTodo={deleteTodo} />
           )}
         />
         <Route 
